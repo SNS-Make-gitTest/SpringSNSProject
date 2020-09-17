@@ -12,11 +12,18 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Value("${file.path}")
 	private String fileRealPath;
+	private String uploadImagePath;
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 
+		registry.addResourceHandler("/upload/**")
+		.addResourceLocations("file:///"+uploadImagePath)
+		.setCachePeriod(3600)
+		.resourceChain(true)
+		.addResolver(new PathResourceResolver());
+		
 		registry.addResourceHandler("/upload/**").addResourceLocations("file:///" + fileRealPath).setCachePeriod(3600)
 				.resourceChain(true).addResolver(new PathResourceResolver());
 	}
