@@ -43,7 +43,7 @@ import com.cos.insta.util.Utils;
 
 @Controller
 public class TestController {
-//수정해봄
+//수정해봄mmm
 	@Autowired
 	private UserRepository mUserRepository;
 	
